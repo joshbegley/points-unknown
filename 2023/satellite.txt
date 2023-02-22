@@ -1,0 +1,24 @@
+String[] images;
+String api_key = "YOUR_API_KEY_GOES_HERE"; // Get an API key from Google's API Console: https://code.google.com/apis/console
+String zoom = "18"; // Start with 16; Google accepts values from 0-21
+
+void setup() {
+  images = loadStrings("data.csv");
+  for(int i = 0; i < images.length; i++) {
+    String[] values = split(images[i], ",");
+    String address = values[0];
+    String id = values[1];
+    PImage img = getSatImage(address);
+    img.save(id + ".jpg");
+  }
+}
+
+void draw() {
+ 
+}
+
+PImage getSatImage(String address) {
+    String url = "https://maps.googleapis.com/maps/api/staticmap?center=" + address + "&zoom=" + zoom +"&scale=2&size=640x640&maptype=satellite&sensor=false&key=" + api_key + "&f=.jpg";
+    println(url);
+    return(loadImage(url));
+}
