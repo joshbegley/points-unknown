@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-r = requests.get("https://www.nytimes.com/search?query=+")
+r = requests.get("https://www.nytimes.com/search?query=a&sort=newest")
 soup = BeautifulSoup(r.text, features="html.parser")
 
 items = soup.select("h4")
